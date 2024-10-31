@@ -40,15 +40,20 @@
                 </div>
             </div>
             <div class="col-md-6 d-flex flex-column align-items-center border p-3">
-                <form method="POST"> <!-- Add method POST -->
+                <!-- Display error messages -->
+                {% if messages %}
+                    <div class="alert alert-danger w-100">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            
+                <form method="POST">
                     {% csrf_token %}
                     <input type="text" name="username" class="form-control mb-2" placeholder="username" required>
                     <input type="password" name="password" class="form-control mb-2" placeholder="password" required>
                     <button type="submit" class="btn btn-primary w-100 mb-2">LOGIN</button>
-                    <div class="d-flex align-items-center my-2">
-                        <span>Or login using</span>
-                        <img src="https://storage.googleapis.com/a1aa/image/pFXZbRzYZi7bHdAUZjqu2RYfeoQJn4CQemTiEdYffDtWEwf6E.jpg" alt="Google logo" width="20" height="20" class="ms-2">
-                    </div>
                 </form>
             </div>
         </div>
