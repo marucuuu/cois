@@ -66,13 +66,13 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{% static 'itstaff/assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ username }}</span>
           </a><!-- End Profile Image Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{ username }}</h6>
+              <span>{{ role }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -109,10 +109,13 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item d-flex align-items-center">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </button>
+              </form>
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
@@ -182,7 +185,7 @@
                                 <select class="form-select" id="role" name="role">
                                     <option value="it_staff">IT Staff</option>
                                     <option value="ceso_staff">CESO Staff</option>
-                                    <option value="teacher_staff">Employee</option>
+                                    <option value="employee">Employee</option>
                                     <option value="student">Student</option>
                                 </select>
                             </div>
